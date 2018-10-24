@@ -12,20 +12,22 @@ export default createReducer(initialState, {
   [MovieTypes.MOVIES_SEARCH_LOADING]: () => ({
     isLoading: true,
     error: null,
+    currentSearch: '',
   }),
   [MovieTypes.MOVIES_SEARCH_SUCCESS]: (state, { data: { items, currentSearch } }) => ({
     isLoading: false,
     error: null,
     items: items,
-    currentSearch: currentSearch
+    currentSearch: currentSearch,
   }),
   [MovieTypes.MOVIES_SEARCH_FAIL]: (state, { error, currentSearch }) => ({
     isLoading: false,
     items: [],
     error: error,
-    currentSearch: currentSearch
+    currentSearch: currentSearch,
   }),
   [MovieTypes.MOVIES_SEARCH_CLEAR]: () => ({
-    items: []
-  })
+    items: [],
+    currentSearch: '',
+  }),
 });

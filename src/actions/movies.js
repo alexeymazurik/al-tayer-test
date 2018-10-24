@@ -42,11 +42,9 @@ export function fetchMoviesSearch(params) {
 
     return fetch(`${SETTING_BASE_API_URL}/${querySelectMovies}`)
       .then(response => {
-        console.log(response);
         return response.json();
       })
       .then(data => {
-        console.log(data);
         if (data.Error) {
           throw new Error(data.Error);
         }

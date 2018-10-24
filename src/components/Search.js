@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import Movies from './Movies/';
@@ -35,6 +36,13 @@ const mapStateToProps = ({ movies }) => {
   };
 };
 
+Search.propTypes = {
+  items: PropTypes.array.isRequired,
+  isSearching: PropTypes.bool.isRequired,
+  history: PropTypes.object.isRequired,
+};
+
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  null
 )(Search);

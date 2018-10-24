@@ -1,23 +1,22 @@
-import configureMockStore from 'redux-mock-store'
-import thunk from 'redux-thunk'
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
 
-import * as types from '../constants/action-types';
-import * as actions from './movies';
+import * as Types from '../constants/action-types';
+import * as MovieActions from './movies';
 
-import expect from 'expect' // You can use any testing library
+import expect from 'expect';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
 describe('async actions', () => {
-  it('does something', () => {
-    const param = 'Skyfall';
+  it('creates correct actions when fetching movies has been done', () => {
+    const searchString = 'Skyfall';
     const mockedResponse = {
       Search: [
-        { Title: 'Skyfall', Poster: 'http://example.com/Skyfall' }
-      ]
+        { Title: 'Skyfall', Poster: 'http://example.com/Skyfall' },
+      ],
     };
-
 
     fetch.mockResponse(
       JSON.stringify(mockedResponse),
@@ -25,16 +24,16 @@ describe('async actions', () => {
     );
 
     const expectedActions = [
-      { type: types.MOVIES_SEARCH_LOADING },
-      { type: types.MOVIES_SEARCH_CLEAR },
-      { type: types.MOVIES_SEARCH_SUCCESS,
-        payload: { data: { currentSearch: param, items: mockedResponse.Search } }
-      }
+      { type: Types.MOVIES_SEARCH_LOADING },
+      { type: Types.MOVIES_SEARCH_CLEAR },
+      { type: Types.MOVIES_SEARCH_SUCCESS,
+        payload: { data: { currentSearch: searchString, items: mockedResponse.Search } },
+      },
     ];
 
     const store = mockStore({ items: [] });
 
-    return store.dispatch(actions.fetchMoviesSearch(param))
+    return store.dispatch(MovieActions.fetchMoviesSearch(searchString))
       .then(() => {
         expect(store.getActions()).toEqual(expectedActions);
       });

@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import qs from 'query-string';
 import debounce from 'lodash/debounce';
 
-import { fetchMoviesSearch } from '../../actions/movies';
+import { clearMoviesSearch, fetchMoviesSearch } from '../../actions/movies';
 
 import Loading from '../Loading/';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-
 class SearchBox extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchString: ''
+      searchString: '',
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -22,6 +22,11 @@ class SearchBox extends Component {
   }
 
   handleChange(e) {
+    if (e.target.value.length === 0) {
+      this.props.clearMoviesSearch();
+      return;
+    }
+
     let trimmedStringValue = e.target.value.trim();
     this.setState({searchString: trimmedStringValue});
 
@@ -61,7 +66,16 @@ const mapStateToProps = ({ movies }) => ({
 });
 
 const mapDispatchToProps = {
-  fetchMoviesSearch
+  clearMoviesSearch,
+  fetchMoviesSearch,
+};
+
+SearchBox.propTypes = {
+  initialSearch: PropTypes.string.isRequired,
+  fetchMoviesSearch: PropTypes.func.isRequired,
+  clearMoviesSearch: PropTypes.func.isRequired,
+  isMoviesSearching: PropTypes.bool.isRequired,
+  history: PropTypes.object.isRequired,
 };
 
 export default connect(

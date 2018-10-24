@@ -1,8 +1,8 @@
-import express from "express";
-import path from "path";
+import express from 'express';
+import path from 'path';
 
-import React from "react";
-import { renderToString } from "react-dom/server";
+import React from 'react';
+import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
@@ -10,7 +10,7 @@ import App from './components/App';
 
 import createStore from './store';
 
-import { fetchMoviesSearch } from './modules/movies';
+import { fetchMoviesSearch } from './actions/movies';
 
 import htmlTemplate from './htmlTemplate';
 
@@ -39,7 +39,7 @@ app.get('/*', (req, res) => {
         const reactDom = renderToString(jsx);
         const reduxState = store.getState();
 
-        res.writeHead( 200, {"Content-Type": "text/html"});
+        res.writeHead( 200, {'Content-Type': 'text/html'});
         res.end(htmlTemplate(reactDom, reduxState));
       })
   } else {
@@ -54,7 +54,7 @@ app.get('/*', (req, res) => {
     const reactDom = renderToString(jsx);
     const reduxState = store.getState();
 
-    res.writeHead( 200, {"Content-Type": "text/html"});
+    res.writeHead( 200, {'Content-Type': 'text/html'});
     res.end(htmlTemplate(reactDom, reduxState));
   }
 

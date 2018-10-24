@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types'
 import OnVisible from 'react-on-visible';
+
 import { DefaultPlaceholder } from '../../constants/settings';
 
 class Movie extends Component {
@@ -14,8 +16,8 @@ class Movie extends Component {
       : DefaultPlaceholder;
   }
 
-  updateVisible(visible) {
-    console.log(`Movie view(#${this.props.index}): ${this.props.movie.Title}`, visible)
+  updateVisible() {
+    console.log(`Movie view(#${this.props.index}): ${this.props.movie.Title}`); // eslint-disable-line no-console
   }
 
   render() {
@@ -35,5 +37,10 @@ class Movie extends Component {
     );
   }
 }
+
+Movie.propTypes = {
+  index: PropTypes.number.isRequired,
+  movie: PropTypes.object.isRequired,
+};
 
 export default Movie;
