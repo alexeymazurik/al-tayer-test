@@ -6,7 +6,9 @@
   "scripts": {
     "start": "./node_modules/.bin/webpack; ./node_modules/.bin/nodemon --exec npx ./node_modules/.bin/babel-node index.js --presets @babel/preset-env,@babel/preset-react",
     "build": "webpack",
-    "test": "jest"
+    "start:prod": "./node_modules/.bin/babel-node index.js --presets @babel/preset-env,@babel/preset-react",
+    "test": "jest",
+    "lint": "./node_modules/.bin/eslint src"
   },
   "keywords": [],
   "author": "",
