@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import qs from 'query-string';
 import debounce from 'lodash/debounce';
-import { fetchMoviesSearch } from '../modules/movies';
+
+import { fetchMoviesSearch } from '../../actions/movies';
+
+import Loading from '../Loading/';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 class SearchBox extends Component {
@@ -36,14 +41,15 @@ class SearchBox extends Component {
 
     return (
       <form className="form-inline SearchBox" onSubmit={e => e.preventDefault()}>
+        <FontAwesomeIcon className="SearchBox__icon" icon="search" />
         <input
           type="text"
-          className="form-control input-group-lg"
+          className="form-control input-group-lg SearchBox__input"
           defaultValue={this.props.initialSearch}
           placeholder="Search Movies..."
           onChange={this.handleChange}
         />
-        { isMoviesSearching ? <div className="lds-dual-ring"></div> : '' }
+        { isMoviesSearching ? <Loading /> : '' }
       </form>
     );
   }

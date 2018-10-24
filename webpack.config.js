@@ -5,7 +5,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-  entry: "./index.js",
+  entry: "./client.js",
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'public')
@@ -31,16 +31,6 @@ module.exports = {
   ],
   module: {
     rules: [{
-      test: /\.(jpg|png|gif|svg)$/,
-      use: [
-        {
-          loader: 'file-loader',
-          options: {
-            name: '[name].[ext]',
-            outputPath: './assets/'
-          }
-        }]
-    }, {
       test: /\.css$/,
       use: [
         MiniCssExtractPlugin.loader,
