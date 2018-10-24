@@ -1,7 +1,7 @@
 # Al Tayer Test Task
 
 ##### Time spent: 
-~20 hours
+~16 hours
 
 ##### Production Ready ToDo Tasks:
  - Improved webpack.config.js (chunks, ...)
@@ -13,6 +13,10 @@
  - Write more tests
  - Improve webpack.config.json
  - Use ES7
+ - Remove bootstrap/font-awesome
+ - Sass
+ - Hand-writtend OnScroll event listeners
+ 
  ---
 ##### Setup Project
 ```
